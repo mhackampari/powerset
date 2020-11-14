@@ -26,6 +26,15 @@ def parse_input(raw_input: str) -> List[str]:
     return raw_input.split(',')
 
 
+def format_output(powerset: Iterable) -> str:
+    """
+    Format intermediate result to expected multiline string
+    :param powerset: Iterable powerset
+    :return: Formatted multiline output
+    """
+    return '\n'.join(map(lambda elem_set: ','.join(elem_set), powerset))
+
+
 def main():
     try:
         elements = parse_input(sys.argv[1])
@@ -34,9 +43,7 @@ def main():
             'Input argument is missing. Please provide a string complaint to the following regular expression: "[0-9a-zA-Z]+(\,[0-9a-zA-Z]+)+"')
 
     iter_powerset = powerset(elements)
-
-    for elem_set in iter_powerset:
-        print(','.join(elem_set) + '\n')
+    print(format_output(iter_powerset))
 
 
 if __name__ == "__main__":
