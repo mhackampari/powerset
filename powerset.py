@@ -1,8 +1,16 @@
+import logging
 import sys
 from itertools import chain
 from itertools import combinations
 from typing import Iterable
 from typing import List
+
+logger = logging.getLogger('Powerset')
+logger.setLevel(logging.ERROR)
+ch = logging.StreamHandler()
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+ch.setFormatter(formatter)
+logger.addHandler(ch)
 
 
 def powerset(iterable: Iterable) -> Iterable:
@@ -14,6 +22,39 @@ def powerset(iterable: Iterable) -> Iterable:
     """
     s = list(iterable)
     return chain.from_iterable(combinations(s, r) for r in range(1, len(s) + 1))
+
+
+def powerset_dfs(iterable: Iterable) -> Iterable[Iterable]:
+    """
+    Depth first traversal method to solve the powerset problem
+
+    :param iterable: Iterable elements from which to generate
+    :return: Iterable result
+    """
+    result = list()
+    for index, elem in enumerate(iterable):
+        logger.debug('Backtrack')
+        logger.debug('Index: {}'.format(index))
+        logger.debug('Elem: {}'.format(elem))
+        _recur_dfs([elem], iterable[index + 1:], result)
+
+    return result
+
+
+def _recur_dfs(prevres, iterable, result):
+    logger.debug('*' * 80)
+    logger.debug('Recurring BT')
+    result.append(prevres[:])
+    logger.debug('Current result: {}'.format(result))
+    logger.debug('Current iterable: {}'.format(iterable))
+
+    for index, elem in enumerate(iterable):
+        logger.debug('Index: {}'.format(index))
+        logger.debug('Elem: {}'.format(elem))
+        logger.debug('Prev res: {}'.format(prevres))
+        curr_res = prevres[:]
+        curr_res.append(elem)
+        _recur_dfs(curr_res, iterable[index + 1:], result)
 
 
 def parse_input(raw_input: str) -> List[str]:
