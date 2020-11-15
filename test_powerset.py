@@ -3,6 +3,7 @@ import unittest
 from powerset import format_output
 from powerset import parse_input
 from powerset import powerset
+from powerset import powerset_dfs
 
 
 class TestPowerset(unittest.TestCase):
@@ -28,6 +29,12 @@ class TestPowerset(unittest.TestCase):
         powerset_out = powerset(parsed_input)
         formatted_out = format_output(powerset_out)
         self.assertMultiLineEqual(formatted_out, expected_result)
+
+    def test_dfs_powerset(self):
+        test_in = [1, 2, 3, 4]
+        expected_result = [[1], [2], [3], [4], [1, 2], [1, 3], [1, 4], [2, 3], [2, 4], [3, 4], [1, 2, 3], [1, 2, 4],
+                           [1, 3, 4], [2, 3, 4], [1, 2, 3, 4]]
+        self.assertCountEqual(powerset_dfs(test_in), expected_result, 'Deep comparison failed!')
 
 
 if __name__ == '__main__':
