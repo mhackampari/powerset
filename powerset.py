@@ -2,6 +2,9 @@ import logging
 import sys
 from itertools import chain
 from itertools import combinations
+from itertools import repeat
+from multiprocessing import Pool
+from typing import Any
 from typing import Iterable
 from typing import List
 
@@ -57,6 +60,32 @@ def _recur_dfs(prevres, iterable, result):
         _recur_dfs(curr_res, iterable[index + 1:], result)
 
 
+def _concat(curr, elem):
+    return curr + [elem]
+
+
+def powerset_mp(iterable: Iterable) -> List[List[Any]]:
+    pool = Pool(processes=2)
+    output = [[]]
+
+    for elem in iterable:
+        output += pool.starmap(_concat, zip(output, repeat(elem)))
+
+    return output[1:]
+
+
+def powerset_iterative(iterable: Iterable) -> List[List[Any]]:
+    output = [[]]
+
+    for elem in iterable:
+        tmp = []
+        for curr in output:
+            tmp.append(curr + [elem])
+        output += tmp
+
+    return output[1:]
+
+
 def parse_input(raw_input: str) -> List[str]:
     """
     Parses command line string transforming it into a list of strings.
@@ -83,7 +112,7 @@ def main():
         sys.exit(
             'Input argument is missing. Please provide a string complaint to the following regular expression: "[0-9a-zA-Z]+(\,[0-9a-zA-Z]+)+"')
 
-    iter_powerset = powerset(elements)
+    iter_powerset = powerset_dfs(elements)
     print(format_output(iter_powerset))
 
 
