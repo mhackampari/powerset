@@ -51,7 +51,7 @@ The code has been written in Python 3.7, and no external libraries or dependenci
 
 ### Time and space complexity analysis
 
-- Space complexity is O(2^n)
+- Space complexity is O(n*2^n)
 - Time complexity is O(n*2^n)
 
 ### Test cases
