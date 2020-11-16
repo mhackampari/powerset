@@ -118,7 +118,7 @@ def main():
         sys.exit(
             'Input argument is missing. Please provide a string complaint to the following regular expression: "[0-9a-zA-Z]+(\,[0-9a-zA-Z]+)+"')
 
-    iter_powerset = powerset_dfs(elements)
+    iter_powerset = powerset_pythonic(elements)
     print(format_output(iter_powerset))
 
 
