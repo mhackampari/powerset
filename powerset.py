@@ -55,7 +55,7 @@ def _concat(curr, elem):
 
 
 def powerset_mp(iterable: Iterable) -> List[List[Any]]:
-    pool = Pool(processes=2)
+    pool = Pool(processes=None)
     output = [[]]
 
     for elem in iterable:
