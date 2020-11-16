@@ -16,7 +16,7 @@ ch.setFormatter(formatter)
 logger.addHandler(ch)
 
 
-def powerset(iterable: Iterable) -> Iterable:
+def powerset_pythonic(iterable: Iterable) -> Iterable:
     """
     Lazily generation of the powerset
 
