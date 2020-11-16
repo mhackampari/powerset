@@ -54,6 +54,13 @@ The code has been written in Python 3.7, and no external libraries or dependenci
 - Space complexity is O(n*2^n)
 - Time complexity is O(n*2^n)
 
+### Performance measurement
+
+The best performing algorithm is `powerset_pythonic`. Note that all algorithms fail with `MemoryError` from length subset of 25.   
+
+![Powerset performance measurement](./images/performance_test.PNG)  
+
+
 ### Test cases
 
 
