@@ -7,6 +7,7 @@ from multiprocessing import Pool
 from typing import Any
 from typing import Iterable
 from typing import List
+from typing import Tuple
 
 logger = logging.getLogger('Powerset')
 logger.setLevel(logging.ERROR)
@@ -16,7 +17,7 @@ ch.setFormatter(formatter)
 logger.addHandler(ch)
 
 
-def powerset_pythonic(iterable: Iterable) -> Iterable:
+def powerset_pythonic(iterable: Iterable) -> Iterable[Tuple[Any]]:
     """
     Lazily generation of the powerset
 
@@ -27,11 +28,11 @@ def powerset_pythonic(iterable: Iterable) -> Iterable:
     return chain.from_iterable(combinations(s, r) for r in range(1, len(s) + 1))
 
 
-def powerset_dfs(iterable: Iterable) -> Iterable[Iterable]:
+def powerset_dfs(iterable: List[Any]) -> List[List[Any]]:
     """
     Depth first traversal method to solve the powerset problem
 
-    :param iterable: Iterable elements from which to generate
+    :param iterable: List of elements from which to generate the powerset
     :return: Iterable result
     """
     result = list()
@@ -41,7 +42,7 @@ def powerset_dfs(iterable: Iterable) -> Iterable[Iterable]:
     return result
 
 
-def _recur_dfs(prevres, iterable, result):
+def _recur_dfs(prevres: List[Any], iterable: List[Any], result: List[List[Any]]):
     result.append(prevres[:])
 
     for index, elem in enumerate(iterable):
