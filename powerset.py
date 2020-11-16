@@ -28,21 +28,22 @@ def powerset_pythonic(iterable: Iterable) -> Iterable[Tuple[Any]]:
     return chain.from_iterable(combinations(s, r) for r in range(1, len(s) + 1))
 
 
-def powerset_dfs(iterable: List[Any]) -> List[List[Any]]:
+def powerset_dfs(inlist: List[Any]) -> List[List[Any]]:
     """
     Depth first traversal method to solve the powerset problem
 
-    :param iterable: List of elements from which to generate the powerset
+    :param inlist: List of elements from which to generate the powerset
     :return: Iterable result
     """
     result = list()
-    for index, elem in enumerate(iterable):
-        _recur_dfs([elem], iterable[index + 1:], result)
+    for index, elem in enumerate(inlist):
+        _recur_dfs([elem], inlist[index + 1:], result)
 
     return result
 
 
 def _recur_dfs(prevres: List[Any], iterable: List[Any], result: List[List[Any]]):
+    """Private recursive auxiliary method with depth first traversal which is used for powerset generation"""
     result.append(prevres[:])
 
     for index, elem in enumerate(iterable):
@@ -52,23 +53,36 @@ def _recur_dfs(prevres: List[Any], iterable: List[Any], result: List[List[Any]])
 
 
 def _concat(curr, elem):
+    """Private auxiliary method for multiprocessing powerset computation"""
     return curr + [elem]
 
 
-def powerset_mp(iterable: Iterable) -> List[List[Any]]:
+def powerset_mp(inlist: List[Any]) -> List[List[Any]]:
+    """
+    Multiprocessing version of powerset algorithm.
+
+    :param inlist: List of elements from which to generate the powerset.
+    :return: Powerset list.
+    """
     pool = Pool(processes=None)
     output = [[]]
 
-    for elem in iterable:
+    for elem in inlist:
         output += pool.starmap(_concat, zip(output, repeat(elem)))
 
     return output[1:]
 
 
-def powerset_iterative(iterable: Iterable) -> List[List[Any]]:
+def powerset_iterative(inlist: List[Any]) -> List[List[Any]]:
+    """
+    Iterative version of powerset algorithm.
+
+    :param inlist: List of elements from which to generate the powerset.
+    :return: Powerset list.
+    """
     output = [[]]
 
-    for elem in iterable:
+    for elem in inlist:
         tmp = []
         for curr in output:
             tmp.append(curr + [elem])
@@ -90,6 +104,7 @@ def parse_input(raw_input: str) -> List[str]:
 def format_output(powerset: Iterable) -> str:
     """
     Format intermediate result to expected multiline string
+
     :param powerset: Iterable powerset
     :return: Formatted multiline output
     """
