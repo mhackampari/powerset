@@ -36,25 +36,15 @@ def powerset_dfs(iterable: Iterable) -> Iterable[Iterable]:
     """
     result = list()
     for index, elem in enumerate(iterable):
-        logger.debug('Backtrack')
-        logger.debug('Index: {}'.format(index))
-        logger.debug('Elem: {}'.format(elem))
         _recur_dfs([elem], iterable[index + 1:], result)
 
     return result
 
 
 def _recur_dfs(prevres, iterable, result):
-    logger.debug('*' * 80)
-    logger.debug('Recurring BT')
     result.append(prevres[:])
-    logger.debug('Current result: {}'.format(result))
-    logger.debug('Current iterable: {}'.format(iterable))
 
     for index, elem in enumerate(iterable):
-        logger.debug('Index: {}'.format(index))
-        logger.debug('Elem: {}'.format(elem))
-        logger.debug('Prev res: {}'.format(prevres))
         curr_res = prevres[:]
         curr_res.append(elem)
         _recur_dfs(curr_res, iterable[index + 1:], result)
