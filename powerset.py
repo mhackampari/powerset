@@ -99,7 +99,7 @@ def parse_input(raw_input: str) -> List[str]:
     :param raw_input: string to parse which respects this pattern str(,str)*
     :return: list of strings
     """
-    if not re.match('\w+(,\w+)*', raw_input, re.LOCALE):
+    if not re.match('\w+(,\w+)*', raw_input, re.UNICODE):
         raise ValueError
     return raw_input.split(',')
 
