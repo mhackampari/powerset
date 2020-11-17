@@ -49,19 +49,31 @@ The code has been written in Python 3.7, and no external libraries or dependenci
 
 ### Design
 
+```
+for each elem in elements:
+    i is position(elem, elements)
+    recur([elem], i)
+
+recur(res, pos):
+    result.append(res)
+    for each elem in elements:
+        i is position(elem, elements)
+        res = res.append(elem)
+        recur(res, i)
+```     
+
 ### Time and space complexity analysis
 
 - Space complexity is O(n*2^n)
 - Time complexity is O(n*2^n)
+
+![Time and space complexity](./images/time_space_complexity.PNG) 
 
 ### Performance measurement
 
 The best performing algorithm is `powerset_pythonic`. Note that all algorithms fail with `MemoryError` from length subset of 25.   
 
 ![Powerset performance measurement](./images/performance_test.PNG)  
-
-
-### Test cases
 
 
 ## References
