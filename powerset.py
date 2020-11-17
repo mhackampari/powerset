@@ -1,4 +1,5 @@
 import logging
+import re
 import sys
 from itertools import chain
 from itertools import combinations
@@ -98,6 +99,8 @@ def parse_input(raw_input: str) -> List[str]:
     :param raw_input: string to parse which respects this pattern str(,str)*
     :return: list of strings
     """
+    if not re.match('\w+(,\w+)*', raw_input, re.LOCALE):
+        raise ValueError
     return raw_input.split(',')
 
 
@@ -117,6 +120,9 @@ def main():
     except IndexError:
         sys.exit(
             'Input argument is missing. Please provide a string complaint to the following regular expression: "[0-9a-zA-Z]+(\,[0-9a-zA-Z]+)+"')
+    except ValueError:
+        logger.error('The passed input does not respect the following regular expression: \w+(\,\w+)*')
+        sys.exit('Your input does not respect this regular expression: \w+(\,\w+)*')
 
     iter_powerset = powerset_pythonic(elements)
     print(format_output(iter_powerset))
