@@ -12,7 +12,7 @@ from typing import Tuple
 
 logger = logging.getLogger('Powerset')
 logger.setLevel(logging.ERROR)
-ch = logging.StreamHandler()
+ch = logging.FileHandler('powerset_error.log')
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 ch.setFormatter(formatter)
 logger.addHandler(ch)
@@ -118,8 +118,9 @@ def main():
     try:
         elements = parse_input(sys.argv[1])
     except IndexError:
+        logger.error('No argument was provided. Exit.')
         sys.exit(
-            'Input argument is missing. Please provide a string complaint to the following regular expression: "[0-9a-zA-Z]+(\,[0-9a-zA-Z]+)+"')
+            """Input argument is missing. Please provide a string complaint to the following regular expression: '\w+(\,\w+)*'""")
     except ValueError:
         logger.error('The passed input does not respect the following regular expression: \w+(\,\w+)*')
         sys.exit('Your input does not respect this regular expression: \w+(\,\w+)*')
