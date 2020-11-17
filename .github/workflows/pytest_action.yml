@@ -22,4 +22,5 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run pytest
-        run: pytest tests
+        run: |
+            pytest
