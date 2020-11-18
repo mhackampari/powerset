@@ -35,7 +35,7 @@ class TestPowerset(unittest.TestCase):
         expected_result = """123\n456\n789\n123,456\n123,789\n456,789\n123,456,789"""
         parsed_input = parse_input(test_in)
         powerset_out = powerset_pythonic(parsed_input)
-        formatted_out = format_output(powerset_out)
+        formatted_out = '\n'.join(format_output(powerset_out))
         self.assertMultiLineEqual(formatted_out, expected_result)
 
     def test_dfs_powerset(self):

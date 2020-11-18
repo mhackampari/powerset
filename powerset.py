@@ -106,12 +106,13 @@ def parse_input(raw_input: str) -> List[str]:
 
 def format_output(powerset: Iterable) -> str:
     """
-    Format intermediate result to expected multiline string
+    Format lazily the results
 
     :param powerset: Iterable powerset
     :return: Formatted multiline output
     """
-    return '\n'.join(map(lambda elem_set: ','.join(elem_set), powerset))
+    for p in powerset:
+        yield ','.join(p)
 
 
 def main():
@@ -127,7 +128,7 @@ def main():
 
     try:
         iter_powerset = powerset_pythonic(elements)
-        print(format_output(iter_powerset))
+        print(*format_output(iter_powerset), sep='\n')
     except MemoryError as e:
         exception_name = e.__class__.__name__
         logger.error('The program has exited due to {} exception'.format(exception_name))
