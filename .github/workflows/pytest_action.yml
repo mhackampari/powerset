@@ -25,4 +25,6 @@ jobs:
         run: |
           pip install pytest
           pip install pytest-cov
-          pytest ./tests/test_powerset.py --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
+          ls
+          python -m powerset
+          pytest ./tests
