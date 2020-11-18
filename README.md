@@ -35,14 +35,28 @@ You should use only stuff other than the standard library of your language of
 choice, any additional requirement should be documented and motivated. Java,
 Python, Scala or Rust are preferred.
 
-## Code design and time/space complexity analysis
+
+## Technical answer
 
 The code has been written in Python 3.7, and no external libraries or dependencies were used for this solution. 
+
+```
+$ $(echo 123,456,789) | powerset_generator.py > output
+$ cat output
+
+123
+456
+789
+123,456
+123,789
+456,789
+123,456,789
+```
 
 ### Requirements and assumptions
 
 - Accepts and process only the input composed of, comma separated, strings of elements.
-- Raise an exception and gracefully exit the code if input does not match the first conditions.
+- Raise an exception and gracefully exit the code if input does not match the first condition.
 - The results are printed to STDOUT.
 - The order of the result does not matter.
 - The void set is ignored.
