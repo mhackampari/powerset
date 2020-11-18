@@ -18,6 +18,21 @@ ch.setFormatter(formatter)
 logger.addHandler(ch)
 
 
+def _concat(curr, elem):
+    """Private auxiliary method for multiprocessing powerset computation"""
+    return curr + [elem]
+
+
+def _recur_dfs(prevres: List[Any], iterable: List[Any], result: List[List[Any]]):
+    """Private recursive auxiliary method with depth first traversal which is used for powerset generation"""
+    result.append(prevres[:])
+
+    for index, elem in enumerate(iterable):
+        curr_res = prevres[:]
+        curr_res.append(elem)
+        _recur_dfs(curr_res, iterable[index + 1:], result)
+
+
 def powerset_pythonic(iterable: Iterable) -> Iterable[Tuple[Any]]:
     """
     Lazily generation of the powerset
@@ -41,21 +56,6 @@ def powerset_dfs(inlist: List[Any]) -> List[List[Any]]:
         _recur_dfs([elem], inlist[index + 1:], result)
 
     return result
-
-
-def _recur_dfs(prevres: List[Any], iterable: List[Any], result: List[List[Any]]):
-    """Private recursive auxiliary method with depth first traversal which is used for powerset generation"""
-    result.append(prevres[:])
-
-    for index, elem in enumerate(iterable):
-        curr_res = prevres[:]
-        curr_res.append(elem)
-        _recur_dfs(curr_res, iterable[index + 1:], result)
-
-
-def _concat(curr, elem):
-    """Private auxiliary method for multiprocessing powerset computation"""
-    return curr + [elem]
 
 
 def powerset_mp(inlist: List[Any]) -> List[List[Any]]:
