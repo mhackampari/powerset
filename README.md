@@ -1,3 +1,4 @@
+![Powerset building status](https://travis-ci.com/mhackampari/powerset.svg?branch=master)
 # Coding challenge
 
 ## Technical Question: Powerset
