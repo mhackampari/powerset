@@ -5,7 +5,10 @@ python:
 install:
   - pip install pytest
   - pip install pytest-cov
+  - pip install python-coveralls
   - pip install -e .
 # command to run tests
 script:
   - pytest ./tests --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
+after_success:
+  - coveralls
