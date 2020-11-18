@@ -71,7 +71,14 @@ recur(res, pos):
 
 ### Performance measurement
 
-The best performing algorithm is `powerset_pythonic`. Note that all algorithms fail with `MemoryError` from length subset of 25.   
+The benchmark was performed with the following setup:
+ - CPU: Intel Core i5-6300 @ 2.40 GHz, 2 Cores, 4 Logical Processors  
+ - RAM: 8GB
+ - OS: Microsoft Windows 10 Enterprise Build 17763
+
+The best performing algorithm is `powerset_pythonic`. Note that all algorithms fail with `MemoryError` from length 
+subset of 25. The error is caused by the inherent space complexity of the algorithm which is very demanding in term of 
+space allocation.  
 
 ![Powerset performance measurement](./images/performance_test.PNG)  
 
