@@ -15,7 +15,8 @@ logger.addHandler(ch)
 
 def main():
     try:
-        elements = parse_input(sys.argv[1])
+        inline = sys.stdin.readlines()[0][:-1]
+        elements = parse_input(inline)
     except IndexError:
         logger.error('No argument was provided. Exit.')
         sys.exit(
