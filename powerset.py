@@ -1,7 +1,6 @@
 import logging
 import re
 import sys
-from itertools import chain
 from itertools import combinations
 from itertools import repeat
 from multiprocessing import Pool
@@ -33,15 +32,16 @@ def _recur_dfs(prevres: List[Any], iterable: List[Any], result: List[List[Any]])
         _recur_dfs(curr_res, iterable[index + 1:], result)
 
 
-def powerset_pythonic(iterable: Iterable) -> Iterable[Tuple[Any]]:
+def powerset_pythonic(initer: List[Any]) -> Iterable[Tuple[Any]]:
     """
     Lazily generation of the powerset
 
-    :param iterable: Iterable of elements
+    :param initer: Iterable of elements
     :return: Iterable of elements
     """
-    s = list(iterable)
-    return chain.from_iterable(combinations(s, r) for r in range(1, len(s) + 1))
+    for r in range(1, len(initer) + 1):
+        for combo in combinations(initer, r):
+            yield combo
 
 
 def powerset_dfs(inlist: List[Any]) -> List[List[Any]]:
