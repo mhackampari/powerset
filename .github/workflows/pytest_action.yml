@@ -25,6 +25,4 @@ jobs:
         run: |
           pip install pytest
           pip install pytest-cov
-          ls
-          python -m powerset
           pytest ./tests
