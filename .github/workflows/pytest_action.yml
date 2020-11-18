@@ -6,7 +6,7 @@ name: GitHub Action for pytest
 # events but only for the master branch
 on:
   push:
-    branches: [ master, fixing_pytest ]
+    branches: [ master ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -25,4 +25,4 @@ jobs:
         run: |
           pip install pytest
           pip install pytest-cov
-          pytest ./tests
+          pytest ./tests --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
