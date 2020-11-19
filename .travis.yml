@@ -13,6 +13,6 @@ script:
   - coverage help
   - coverage help run
   - coverage run --help
-  - coverage run --omit=performance_test.ipynb -m pytest ./tests
+  - coverage run --omit=performance_test.ipynb,virtualenv -m pytest ./tests
 after_success:
   - coveralls
