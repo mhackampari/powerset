@@ -1,4 +1,5 @@
 ![Powerset building status](https://travis-ci.com/mhackampari/powerset.svg?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/mhackampari/powerset/badge.svg?branch=master)](https://coveralls.io/github/mhackampari/powerset?branch=master)
 # Coding challenge
 
 ## Technical Question: Powerset
