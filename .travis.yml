@@ -4,12 +4,12 @@ python:
   # command to install dependencies
 install:
   - pip install pytest
-  - pip install pytest-cov
-  - pip install python-coveralls
+  - pip install coverage
   - pip install coveralls
   - pip install -e .
 # command to run tests
 script:
-  - pytest ./tests --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
+  - pytest ./tests
+  - coverage run -m pytest ./tests
 after_success:
   - coveralls
