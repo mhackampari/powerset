@@ -10,6 +10,9 @@ install:
 # command to run tests
 script:
   - pytest ./tests
-  - coverage run --omit=performance_test.ipynb
+  - coverage help
+  - coverage help run
+  - coverage run --help
+  - coverage run --omit=performance_test.ipynb -m pytest ./tests
 after_success:
   - coveralls
